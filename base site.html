@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio</title>
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navegação */
+        nav {
+            background-color: #2c3e50;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #34495e;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 20px;
+        }
+
+        /* Seções */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #3498db;
+        }
+
+        /* Hero / Home */
+        #home {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            min-height: 60vh;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            color: #555;
+        }
+
+        .profile-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .profile-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 400px;
+            border: 5px solid white;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* Sobre */
+        #about p {
+            max-width: 800px;
+            margin-bottom: 1rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background-color: #e8f4fd;
+            color: #2c3e50;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 500;
+            border: 1px solid #b8d4e8;
+        }
+
+        /* Projetos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .project-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Contato */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            min-width: 200px;
+        }
+
+        .contact-item a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .profile-image img {
+                max-width: 250px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegação -->
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#projects">Projetos</a></li>
+            <li><a href="#contact">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Seção Home -->
+        <section id="home">
+            <div class="hero-content">
+                <h1>Olá, eu sou <span style="color: #3498db;">[Seu Nome]</span></h1>
+                <p>informação 1 | informação 2 | informação 3/p>
+                <p style="font-size: 1rem; color: #666;">informação principal</p>
+                <div>
+                    <a href="#projects" class="btn">Ver Projetos</a>
+                    <a href="#contact" class="btn btn-secondary">Contato</a>
+                </div>
+            </div>
+            <div class="profile-image">
+                <!-- Substitua o caminho da imagem pela sua foto -->
+                <img src="https://via.placeholder.com/400x400/3498db/ffffff?text=Foto+Perfil" alt="Foto de perfil">
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="about">
+            <h2>Sobre Mim</h2>
+            <p>Sou um profissional apaixonado por desenvolvimento web com experiência em criar soluções criativas e funcionais. Minha jornada começou com curiosidade e hoje transformo ideias em realidade digital.</p>
+            <p>Com habilidades em diversas tecnologias, busco sempre aprender e me atualizar para entregar o melhor resultado em cada projeto.</p>
+            
+            <div class="skills">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Figma</span>
+            </div>
+        </section>
+
+        <!-- Seção Projetos -->
+        <section id="projects">
+            <h2>Meus Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/3498db/ffffff?text=Projeto+1" alt="Projeto 1">
+                    <div class="project-info">
+                        <h3>Projeto Alpha</h3>
+                        <p>Uma aplicação web interativa com foco em experiência do usuário e design moderno.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/2ecc71/ffffff?text=Projeto+2" alt="Projeto 2">
+                    <div class="project-info">
+                        <h3>Projeto Beta</h3>
+                        <p>Sistema de gerenciamento de conteúdo com painel administrativo completo.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/e74c3c/ffffff?text=Projeto+3" alt="Projeto 3">
+                    <div class="project-info">
+                        <h3>Projeto Gamma</h3>
+                        <p>E-commerce responsivo com integração de pagamentos e carrinho de compras.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <section id="contact">
+            <h2>Entre em Contato</h2>
+            <p>Vamos trabalhar juntos? Fique à vontade para me enviar uma mensagem!</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong> Email</strong><br>
+                    <a href="mailto:seuemail@example.com">seuemail@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong> WhatsApp</strong><br>
+                    <a href="https://wa.me/5511999999999">numero</a>
+                </div>
+                <div class="contact-item">
+                    <strong>🔗 LinkedIn</strong><br>
+                    <a href="#">linkedin.com/in/seuperfil</a>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; color: #888;">Estou disponível para freelas, projetos e parcerias!</p>
+        </section>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 [Seu Nome]. Todos os direitos reservados.</p>
+        <p style="font-size: 0.9rem; opacity: 0.8;">Feito com ❤️ e muito café</p>
+    </footer>
+</body>
+</html>
