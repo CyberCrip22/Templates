@@ -2,6 +2,7 @@
 
 
 templates/
+
 ├── portfolio-base.html    # Template de portfólio pessoal
 └── (outros templates aqui)
 
